@@ -11,8 +11,6 @@ option(WITH_CUDA "Enable CUDA support" OFF)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_GLIBCXX_USE_CXX11_ABI=0")
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pyg_lib/csrc/config.h.in "${CMAKE_CURRENT_SOURCE_DIR}/pyg_lib/csrc/config.h")
-
 if (USE_PYTHON)
   add_definitions(-DUSE_PYTHON)
   find_package(Python3 REQUIRED COMPONENTS Development)
@@ -63,6 +61,7 @@ if(USE_MKL_BLAS AND DEFINED BLAS_INCLUDE_DIR)
     endif()
   endif()
 endif()
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pyg_lib/csrc/config.h.in "${CMAKE_CURRENT_SOURCE_DIR}/pyg_lib/csrc/config.h")
 
 if (NOT "$ENV{EXTERNAL_PHMAP_INCLUDE_DIR}" STREQUAL "")
   include_directories($ENV{EXTERNAL_PHMAP_INCLUDE_DIR})
