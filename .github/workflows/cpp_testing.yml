@@ -1,10 +1,6 @@
 name: C++ Testing
 
-on:  # yamllint disable-line rule:truthy
-  push:
-    branches:
-      - master
-  pull_request:
+on: [workflow_dispatch]
 
 jobs:
 
