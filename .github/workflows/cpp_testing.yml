@@ -38,7 +38,7 @@ jobs:
       - name: My backup
         if: ${{ failure() }}
         run: |
-          cat /home/runner/work/pyg-lib/libpyg.so
+          ls /home/runner/work/pyg-lib/
 
       - name: Run tests
         run: |
