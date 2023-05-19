@@ -38,7 +38,7 @@ jobs:
       - name: My backup
         if: ${{ failure() }}
         run: |
-           strings /home/runner/work/pyg-lib/pyg-lib/build/libpyg.so | grep *mkl*
+          nm --demangle --dynamic /home/runner/work/pyg-lib/pyg-lib/build/libpyg.so | grep mkl
 
       - name: Run tests
         run: |
