@@ -86,7 +86,6 @@ if(USE_MKL_BLAS AND DEFINED BLAS_INCLUDE_DIR)
     
     include_directories(${MKL_INCLUDE_DIR})
     target_include_directories(${PROJECT_NAME} PUBLIC ${MKL_INCLUDE_DIR} NO_CACHE)
-    target_link_libraries(${PROJECT_NAME} PRIVATE mkl_intel_lp64 mkl_core mkl_gnu_thread)
 
     set(WITH_MKL_BLAS 1)
   else()
