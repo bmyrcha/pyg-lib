@@ -77,11 +77,14 @@ if(USE_MKL_BLAS AND DEFINED BLAS_INCLUDE_DIR)
     message(WARNING "We found MKL! YAAAAAAAAAAAAAAAAAAAAAAAY v2!")
     message(WARNING "We found MKL: ${MKL_INCLUDE_FOUND}")
     # set(MKL_INCLUDE_DIR /opt/hostedtoolcache/Python/3.8.16/x64/include)
-    # target_include_directories(${PROJECT_NAME} PUBLIC ${MKL_INCLUDE_DIR})
     
-    include_directories(MKL_INCLUDE_DIR)
+    message(WARNING "Including MKL DIR: ${MKL_INCLUDE_DIR}")
+    
+    include_directories(${MKL_INCLUDE_DIR})
+    target_include_directories(${PROJECT_NAME} PUBLIC ${MKL_INCLUDE_DIR})
 
     # Link the required MKL libraries
+    
     find_library(MKL_LIB mkl_intel_lp64)
     find_library(MKL_CORE_LIB mkl_core)
     find_library(MKL_THREAD_LIB mkl_gnu_thread)
