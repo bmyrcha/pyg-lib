@@ -72,7 +72,11 @@ set(WITH_MKL_BLAS 0)
 if(USE_MKL_BLAS AND DEFINED BLAS_INCLUDE_DIR)
   message(WARNING "YAAAAAAAAAAAAAAAAAAAAAAAY!")
   find_file(MKL_INCLUDE_FOUND mkl.h ${BLAS_INCLUDE_DIR} NO_DEFAULT_PATH)
+  find_file(MKL_VSL_INCLUDE_FOUND mkl_vsl.h ${BLAS_INCLUDE_DIR} NO_DEFAULT_PATH)
+  find_file(MKL_VSL_FUNCS_INCLUDE_FOUND mkl_vsl_functions.h ${BLAS_INCLUDE_DIR} NO_DEFAULT_PATH)
   find_path(MKL_INCLUDE_DIR mkl.h ${BLAS_INCLUDE_DIR} NO_CACHE)
+  message(WARNING "MKL_VSL_INCLUDE_FOUND: ${MKL_VSL_INCLUDE_FOUND}")
+  message(WARNING "MKL_VSL_FUNCS_INCLUDE_FOUND: ${MKL_VSL_FUNCS_INCLUDE_FOUND}")
   if(MKL_INCLUDE_FOUND)
     message(WARNING "We found MKL! YAAAAAAAAAAAAAAAAAAAAAAAY v2!")
     message(WARNING "We found MKL: ${MKL_INCLUDE_FOUND}")
@@ -82,14 +86,8 @@ if(USE_MKL_BLAS AND DEFINED BLAS_INCLUDE_DIR)
     
     include_directories(${MKL_INCLUDE_DIR})
     target_include_directories(${PROJECT_NAME} PUBLIC ${MKL_INCLUDE_DIR} NO_CACHE)
+    target_link_libraries(${PROJECT_NAME} mkl_intel_lp64 mkl_core mkl_gnu_thread)
 
-    # Link the required MKL libraries
-    
-   # find_library(MKL_LIB mkl_intel_lp64)
-   # find_library(MKL_CORE_LIB mkl_core)
-   # find_library(MKL_THREAD_LIB mkl_gnu_thread)
-
-   # target_link_libraries(${PROJECT_NAME} PRIVATE ${MKL_LIB} ${MKL_CORE_LIB} ${MKL_THREAD_LIB})
     set(WITH_MKL_BLAS 1)
   else()
     if(WITH_COV)
