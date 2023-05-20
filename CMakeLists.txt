@@ -98,7 +98,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pyg_lib/csrc/config.h.in "${CMAKE_CUR
 
 if(MKL_INCLUDE_FOUND)
     target_include_directories(${PROJECT_NAME} PUBLIC ${BLAS_INCLUDE_DIR})
-    message(WARNING "Including directory: ${BLAS_INCLUDE_DIR}"
+    message(WARNING "Including directory: ${BLAS_INCLUDE_DIR}")
 endif()
 
 message("-- CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
