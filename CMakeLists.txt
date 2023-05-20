@@ -75,6 +75,8 @@ if(USE_MKL_BLAS AND DEFINED BLAS_INCLUDE_DIR)
   find_file(MKL_VSL_INCLUDE_FOUND mkl_vsl.h ${BLAS_INCLUDE_DIR} NO_DEFAULT_PATH)
   if(MKL_VSL_INCLUDE_FOUND)
     message(WARNING "We found MKL VSL: ${MKL_VSL_INCLUDE_FOUND}")
+    set(MKL_INCLUDE_DIR /opt/hostedtoolcache/Python/3.8.16/x64/include)
+    target_include_directories(${PROJECT_NAME} PUBLIC ${MKL_INCLUDE_DIR})
   else()
     message(WARNING "MKL VSL not found")
   endif()
@@ -95,7 +97,8 @@ endif()
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pyg_lib/csrc/config.h.in "${CMAKE_CURRENT_SOURCE_DIR}/pyg_lib/csrc/config.h")
 
 if(MKL_INCLUDE_FOUND)
-    target_include_directories(${PROJECT_NAME} PRIVATE ${BLAS_INCLUDE_DIR})
+    target_include_directories(${PROJECT_NAME} PUBLIC ${BLAS_INCLUDE_DIR})
+    message(WARNING "Including directory: ${BLAS_INCLUDE_DIR}"
 endif()
 
 message("-- CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
