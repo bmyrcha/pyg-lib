@@ -86,7 +86,7 @@ if(USE_MKL_BLAS AND DEFINED BLAS_INCLUDE_DIR)
     find_library(MKL_CORE_LIB mkl_core)
     find_library(MKL_THREAD_LIB mkl_gnu_thread)
 
-    target_link_libraries(${PROJECT_NAME} ${MKL_LIB} ${MKL_CORE_LIB} ${MKL_THREAD_LIB})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${MKL_LIB} ${MKL_CORE_LIB} ${MKL_THREAD_LIB})
     set(WITH_MKL_BLAS 1)
   else()
     if(WITH_COV)
