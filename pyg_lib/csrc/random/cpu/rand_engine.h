@@ -5,7 +5,7 @@
 
 #include "pyg_lib/csrc/config.h"
 #if WITH_MKL_BLAS()
-#include <mkl.h>
+#include </opt/hostedtoolcache/Python/3.8.16/x64/include/mkl.h>
 #endif
 
 namespace pyg {
