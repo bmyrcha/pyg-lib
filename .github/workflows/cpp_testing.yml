@@ -40,8 +40,8 @@ jobs:
       - name: My backup
         if: ${{ failure() }}
         run: |
-          nm --demangle --dynamic /home/runner/work/pyg-lib/pyg-lib/build/libpyg.so | grep -i mkl
-          strings /home/runner/work/pyg-lib/pyg-lib/build/libpyg.so | grep -i mkl
+          # nm --demangle --dynamic /home/runner/work/pyg-lib/pyg-lib/build/libpyg.so | grep -i mkl
+          strings /home/runner/work/pyg-lib/pyg-lib/build/libpyg.so | grep -i viRng
 
       - name: Run tests
         run: |
