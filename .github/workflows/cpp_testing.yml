@@ -29,7 +29,7 @@ jobs:
           echo "Check oneMKL"
           ls /home/runner/work/pyg-lib/pyg-lib/oneMKL
           ls /home/runner/work/pyg-lib/pyg-lib/oneMKL/cmake/mkl
-          pip install mkl-include
+          pip install mkl mkl-include
           
           cat /opt/hostedtoolcache/Python/3.8.16/x64/include/mkl_vsl_functions.h | grep viRngUniform
           echo "Code in mkl.h :"
