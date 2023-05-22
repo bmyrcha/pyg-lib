@@ -27,8 +27,8 @@ jobs:
       - name: Configure
         run: |
           echo "Check oneMKL"
-          ls /home/runner/work/oneMKL
-          ls /home/runner/work/oneMKL/cmake/mkl
+          ls /home/runner/work/pyg-lib/pyg-lib/oneMKL
+          ls /home/runner/work/pyg-lib/pyg-lib/oneMKL/cmake/mkl
           pip install mkl-include
           
           cat /opt/hostedtoolcache/Python/3.8.16/x64/include/mkl_vsl_functions.h | grep viRngUniform
@@ -39,7 +39,7 @@ jobs:
           export _BLAS_INCLUDE_DIR=`python -c 'import os;import sysconfig;data=sysconfig.get_path("data");print(f"{data}{os.sep}include")'`
           echo "Blas include dir:"
           ls $_BLAS_INCLUDE_DIR
-          Torch_DIR=`python -c 'import torch;print(torch.utils.cmake_prefix_path)'` cmake .. -GNinja -DBUILD_TEST=ON -DWITH_COV=ON -DCMAKE_BUILD_TYPE=DEBUG -DUSE_MKL_BLAS=ON -DBLAS_INCLUDE_DIR=$_BLAS_INCLUDE_DIR -DMKL_DIR=/home/runner/work/oneMKL/cmake/mkl
+          Torch_DIR=`python -c 'import torch;print(torch.utils.cmake_prefix_path)'` cmake .. -GNinja -DBUILD_TEST=ON -DWITH_COV=ON -DCMAKE_BUILD_TYPE=DEBUG -DUSE_MKL_BLAS=ON -DBLAS_INCLUDE_DIR=$_BLAS_INCLUDE_DIR -DMKL_DIR=/home/runner/work/pyg-lib/pyg-lib/oneMKL/cmake/mkl
           unset _BLAS_INCLUDE_DIR
           cd ..
 
