@@ -20,6 +20,9 @@ jobs:
           ref: develop
           path: oneMKL
           submodules: recursive
+        
+      - name: Install intel-mkl
+        run: sudo apt-get install -y intel-mkl
 
       - name: Setup packages
         uses: ./.github/actions/setup
