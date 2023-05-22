@@ -16,7 +16,7 @@ jobs:
       - name: Clone oneMKL
         uses: actions/checkout@v3
         with:
-          name: oneapi-src/oneMKL
+          repository: oneapi-src/oneMKL
           ref: develop
           path: oneMKL
           submodules: recursive
