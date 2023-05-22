@@ -12,12 +12,14 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: recursive
+
       - name: Clone oneMKL
         uses: actions/checkout@v3
         with:
           name: oneapi-src/oneMKL
-          ref: refs/heads/develop
+          ref: develop
           path: oneMKL
+          submodules: recursive
 
       - name: Setup packages
         uses: ./.github/actions/setup
