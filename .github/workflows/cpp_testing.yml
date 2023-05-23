@@ -24,15 +24,17 @@ jobs:
           pip install mkl mkl-include mkl-devel
           
           cat /opt/hostedtoolcache/Python/3.8.16/x64/include/mkl_vsl_functions.h | grep viRngUniform
-          echo "Code in mkl.h :"
-          cat /opt/hostedtoolcache/Python/3.8.16/x64/include/mkl.h
+          # echo "Code in mkl.h :"
+          # cat /opt/hostedtoolcache/Python/3.8.16/x64/include/mkl.h
+          
           mkdir build
           cd build
+          
           export _BLAS_INCLUDE_DIR=`python -c 'import os;import sysconfig;data=sysconfig.get_path("data");print(f"{data}{os.sep}include")'`
           echo "Blas include dir:"
           ls $_BLAS_INCLUDE_DIR
           
-          MKL_CMAKE=$(find / -type f -name MKLConfig.cmake -print -quit)
+          MKL_CMAKE=$(find /opt -type f -name MKLConfig.cmake -print -quit)
           MKL_DIR=$(dirname ${MKL_CMAKE})
           echo "MKL_DIR: ${MKL_DIR}"
           
