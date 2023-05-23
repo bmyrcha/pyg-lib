@@ -55,6 +55,8 @@ file(GLOB_RECURSE ALL_HEADERS ${CSRC}/*.h)
 add_library(${PROJECT_NAME} SHARED ${ALL_SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 if(MKL_INCLUDE_FOUND)
+  find_package(MKL REQUIRED)
+  target_link_libraries(${PROJECT_NAME} PRIVATE ${MKL_LIBRARIES})
   target_include_directories(${PROJECT_NAME} PUBLIC ${BLAS_INCLUDE_DIR})
 endif()
 
