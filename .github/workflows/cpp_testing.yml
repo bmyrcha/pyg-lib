@@ -13,15 +13,12 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install intel-mkl
-        run: sudo apt-get install -y intel-mkl
-
       - name: Setup packages
         uses: ./.github/actions/setup
 
       - name: Configure
         run: |
-          pip install mkl mkl-include mkl-devel
+          pip install mkl mkl-include mkl-devel mkl-static
 
           mkdir build
           cd build
