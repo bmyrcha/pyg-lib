@@ -18,7 +18,7 @@ jobs:
 
       - name: Configure
         run: |
-          pip install mkl==2021.4 mkl-include==2021.4 mkl-devel==2021.4 mkl-static==2021.4
+          pip install mkl==2023.1 mkl-include==2023.1 mkl-devel==2023.1 mkl-static==2023.1
 
           mkdir build
           cd build
