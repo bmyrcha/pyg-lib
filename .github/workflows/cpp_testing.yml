@@ -13,14 +13,6 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Clone oneMKL
-        uses: actions/checkout@v3
-        with:
-          repository: oneapi-src/oneMKL
-          ref: develop
-          path: oneMKL
-          submodules: recursive
-        
       - name: Install intel-mkl
         run: sudo apt-get install -y intel-mkl
 
@@ -29,10 +21,7 @@ jobs:
 
       - name: Configure
         run: |
-          echo "Check oneMKL"
-          ls /home/runner/work/pyg-lib/pyg-lib/oneMKL
-          ls /home/runner/work/pyg-lib/pyg-lib/oneMKL/cmake/mkl
-          pip install mkl mkl-include
+          pip install mkl mkl-include mkl-devel
           
           cat /opt/hostedtoolcache/Python/3.8.16/x64/include/mkl_vsl_functions.h | grep viRngUniform
           echo "Code in mkl.h :"
@@ -42,7 +31,12 @@ jobs:
           export _BLAS_INCLUDE_DIR=`python -c 'import os;import sysconfig;data=sysconfig.get_path("data");print(f"{data}{os.sep}include")'`
           echo "Blas include dir:"
           ls $_BLAS_INCLUDE_DIR
-          Torch_DIR=`python -c 'import torch;print(torch.utils.cmake_prefix_path)'` cmake .. -GNinja -DBUILD_TEST=ON -DWITH_COV=ON -DCMAKE_BUILD_TYPE=DEBUG -DUSE_MKL_BLAS=ON -DBLAS_INCLUDE_DIR=$_BLAS_INCLUDE_DIR -DMKL_DIR=/home/runner/work/pyg-lib/pyg-lib/oneMKL/cmake/mkl
+          
+          MKL_CMAKE=$(find / -type f -name MKLConfig.cmake -print -quit)
+          MKL_DIR=$(dirname ${MKL_CMAKE})
+          echo "MKL_DIR: ${MKL_DIR}"
+          
+          MKL_DIR=${MKL_DIR} Torch_DIR=`python -c 'import torch;print(torch.utils.cmake_prefix_path)'` cmake .. -GNinja -DBUILD_TEST=ON -DWITH_COV=ON -DCMAKE_BUILD_TYPE=DEBUG -DUSE_MKL_BLAS=ON -DBLAS_INCLUDE_DIR=$_BLAS_INCLUDE_DIR
           unset _BLAS_INCLUDE_DIR
           cd ..
 
