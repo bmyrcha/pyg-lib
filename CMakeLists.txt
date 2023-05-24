@@ -48,7 +48,7 @@ if(MKL_LIBRARIES)
   
   target_compile_options(${PROJECT_NAME} PUBLIC $<TARGET_PROPERTY:MKL::mkl_core,INTERFACE_COMPILE_OPTIONS>)
   target_include_directories(${PROJECT_NAME} PUBLIC $<TARGET_PROPERTY:MKL::mkl_core,INTERFACE_INCLUDE_DIRECTORIES>)
-  target_link_libraries(${PROJECT_NAME} PUBLIC $<LINK_ONLY:MKL::MKL>)
+  target_link_libraries(${PROJECT_NAME} PUBLIC $<LINK_ONLY:MKL::mkl_core>)
 
   set(WITH_MKL_BLAS 1)
 endif()
