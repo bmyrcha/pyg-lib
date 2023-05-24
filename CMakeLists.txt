@@ -57,7 +57,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 if(MKL_INCLUDE_FOUND)
   find_package(MKL REQUIRED)
   target_link_libraries(${PROJECT_NAME} PRIVATE ${MKL_LIBRARIES})
-  target_include_directories(${PROJECT_NAME} PUBLIC ${BLAS_INCLUDE_DIR})
+  target_include_directories(${PROJECT_NAME} PUBLIC ${MKL_INCLUDE_DIRS})
 endif()
 
 if (NOT "$ENV{EXTERNAL_PHMAP_INCLUDE_DIR}" STREQUAL "")
