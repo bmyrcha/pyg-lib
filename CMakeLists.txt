@@ -46,7 +46,7 @@ message(STATUS "MKL_IMPORTED_TARGETS: ${MKL_IMPORTED_TARGETS}")
 if(MKL_LIBRARIES)
   message(STATUS "MKL_IMPORTED_TARGETS: ${MKL_IMPORTED_TARGETS}")
 
-  target_link_libraries(${PROJECT_NAME} PRIVATE MKL::mkl_core)
+  target_link_libraries(${PROJECT_NAME} PRIVATE MKL::mkl_intel_thread MKL::mkl_core)
 
   set(WITH_MKL_BLAS 1)
 endif()
