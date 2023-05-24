@@ -45,9 +45,9 @@ find_package(MKL CONFIG REQUIRED)
 message(STATUS "MKL_IMPORTED_TARGETS: ${MKL_IMPORTED_TARGETS}")
 if(MKL_LIBRARIES)
   message(STATUS "MKL_IMPORTED_TARGETS: ${MKL_IMPORTED_TARGETS}")
-  
-  target_link_libraries(${PROJECT_NAME} INTERFACE ${MKL_IMPORTED_TARGETS})
-  
+
+  target_link_libraries(${PROJECT_NAME} PRIVATE MKL::mkl_core)
+
   set(WITH_MKL_BLAS 1)
 endif()
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pyg_lib/csrc/config.h.in "${CMAKE_CURRENT_SOURCE_DIR}/pyg_lib/csrc/config.h")
