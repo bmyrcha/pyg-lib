@@ -18,7 +18,8 @@ jobs:
 
       - name: Configure
         run: |
-          pip install mkl==2022.1.0 mkl-include==2022.1.0 mkl-devel==2022.1.0 mkl-static==2022.1.0
+          MKL_VERSION=2023.0.0
+          pip install mkl==${MKL_VERSION} mkl-include==${MKL_VERSION} mkl-devel==${MKL_VERSION} mkl-static==${MKL_VERSION}
 
           mkdir build
           cd build
