@@ -58,9 +58,9 @@ if(MKL_INCLUDE_FOUND)
   find_package(MKL CONFIG REQUIRED)
   message(STATUS "${MKL_IMPORTED_TARGETS}")
   
-  target_compile_options(myapp PUBLIC $<TARGET_PROPERTY:MKL::MKL,INTERFACE_COMPILE_OPTIONS>)
-  target_include_directories(myapp PUBLIC $<TARGET_PROPERTY:MKL::MKL,INTERFACE_INCLUDE_DIRECTORIES>)
-  target_link_libraries(myapp PUBLIC $<LINK_ONLY:MKL::MKL>)
+  target_compile_options(${PROJECT_NAME} PUBLIC $<TARGET_PROPERTY:MKL::MKL,INTERFACE_COMPILE_OPTIONS>)
+  target_include_directories(${PROJECT_NAME} PUBLIC $<TARGET_PROPERTY:MKL::MKL,INTERFACE_INCLUDE_DIRECTORIES>)
+  target_link_libraries(${PROJECT_NAME} PUBLIC $<LINK_ONLY:MKL::MKL>)
 
   # target_link_libraries(${PROJECT_NAME} PRIVATE ${MKL_LIBRARIES})
   # target_include_directories(${PROJECT_NAME} PUBLIC ${MKL_INCLUDE_DIRS})
