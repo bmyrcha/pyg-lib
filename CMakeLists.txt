@@ -46,10 +46,8 @@ message(STATUS "MKL_IMPORTED_TARGETS: ${MKL_IMPORTED_TARGETS}")
 if(MKL_LIBRARIES)
   message(STATUS "MKL_IMPORTED_TARGETS: ${MKL_IMPORTED_TARGETS}")
   
-  target_compile_options(${PROJECT_NAME} PUBLIC $<TARGET_PROPERTY:MKL::mkl_core,INTERFACE_COMPILE_OPTIONS>)
-  target_include_directories(${PROJECT_NAME} PUBLIC $<TARGET_PROPERTY:MKL::mkl_core,INTERFACE_INCLUDE_DIRECTORIES>)
-  target_link_libraries(${PROJECT_NAME} PUBLIC $<LINK_ONLY:MKL::mkl_core>)
-
+  target_link_libraries(${PROJECT_NAME} INTERFACE ${MKL_IMPORTED_TARGETS})
+  
   set(WITH_MKL_BLAS 1)
 endif()
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pyg_lib/csrc/config.h.in "${CMAKE_CURRENT_SOURCE_DIR}/pyg_lib/csrc/config.h")
