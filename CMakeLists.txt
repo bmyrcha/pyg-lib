@@ -41,14 +41,15 @@ add_library(${PROJECT_NAME} SHARED ${ALL_SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 
 set(WITH_MKL_BLAS 0)
-find_package(MKL CONFIG REQUIRED)
-message(STATUS "MKL_IMPORTED_TARGETS: ${MKL_IMPORTED_TARGETS}")
-if(MKL_LIBRARIES)
-  message(STATUS "MKL_IMPORTED_TARGETS: ${MKL_IMPORTED_TARGETS}")
-
-  target_link_libraries(${PROJECT_NAME} PRIVATE MKL::mkl_intel_thread MKL::mkl_core)
-
-  set(WITH_MKL_BLAS 1)
+if(USE_MKL_BLAS AND DEFINED MKL_DIR)
+  find_package(MKL CONFIG REQUIRED)
+  if(MKL_IMPORTED_TARGETS)
+    message(STATUS "MKL_IMPORTED_TARGETS: ${MKL_IMPORTED_TARGETS}")
+    
+    target_link_libraries(${PROJECT_NAME} PRIVATE MKL::MKL)
+    
+    set(WITH_MKL_BLAS 1)
+  endif()
 endif()
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pyg_lib/csrc/config.h.in "${CMAKE_CURRENT_SOURCE_DIR}/pyg_lib/csrc/config.h")
 
