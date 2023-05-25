@@ -24,6 +24,7 @@ jobs:
       - name: Configure
         run: |
           pip install mkl-include==2021.4
+          pip install mkl==2021.4
           pip install mkl_random==1.2.2
           mkdir build
           cd build
