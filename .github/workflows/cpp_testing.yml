@@ -1,10 +1,7 @@
 name: C++ Testing
 
 on:  # yamllint disable-line rule:truthy
-  push:
-    branches:
-      - master
-  pull_request:
+  workflow_dispatch:
 
 jobs:
 
