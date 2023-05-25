@@ -23,6 +23,7 @@ jobs:
       - name: Configure
         run: |
           pip install mkl-include==2021.4
+          pip install mkl_random==1.2.2
           mkdir build
           cd build
           export _BLAS_INCLUDE_DIR=`python -c 'import os;import sysconfig;data=sysconfig.get_path("data");print(f"{data}{os.sep}include")'`
