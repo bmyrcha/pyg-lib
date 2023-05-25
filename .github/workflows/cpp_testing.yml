@@ -25,6 +25,7 @@ jobs:
         run: |
           pip install mkl-include==2021.4
           pip install mkl==2021.4
+          pip install mkl-devel==2021.4
           pip install mkl_random==1.2.2
           pip install mkl-service==2.4.0
           mkdir build
