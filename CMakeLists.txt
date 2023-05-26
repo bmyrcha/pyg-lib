@@ -57,7 +57,7 @@ add_library(${PROJECT_NAME} SHARED ${ALL_SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 if(MKL_INCLUDE_FOUND)
     target_include_directories(${PROJECT_NAME} PRIVATE ${BLAS_INCLUDE_DIR})
-    target_link_libraries(${PROJECT_NAME} PRIVATE /opt/hostedtoolcache/Python/3.8.16/x64/lib/libmkl_gf_lp64.so.2)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${MKL_LIBRARY})
 endif()
 
 if (NOT "$ENV{EXTERNAL_PHMAP_INCLUDE_DIR}" STREQUAL "")
