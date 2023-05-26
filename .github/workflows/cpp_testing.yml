@@ -29,6 +29,9 @@ jobs:
           pip install mkl_random==1.2.2
           pip install mkl-service==2.4.0
           ls /opt/hostedtoolcache/Python/3.8.16/x64/lib/ | grep -i mkl
+          export MKL_RANDOM_PATH=`python -c 'import os; import mkl_random; print(os.path.dirname(mkl_random.__file__))`
+          export MKL_LIBRARY=`find ${MKL_RANDOM_PATH} -type f -name *.so`
+          
           mkdir build
           cd build
           export _BLAS_INCLUDE_DIR=`python -c 'import os;import sysconfig;data=sysconfig.get_path("data");print(f"{data}{os.sep}include")'`
