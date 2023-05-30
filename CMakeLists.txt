@@ -60,8 +60,9 @@ if(MKL_INCLUDE_FOUND)
 
     add_library(MKL_RANDOM SHARED IMPORTED)
     set_target_properties(MKL_RANDOM PROPERTIES IMPORTED_LOCATION ${MKL_LIBRARY})
+    target_link_libraries(${PROJECT_NAME} PRIVATE MKL_RANDOM)
 
-    # target_include_directories(${PROJECT_NAME} PRIVATE ${BLAS_INCLUDE_DIR})
+    # target_include_directories(${PROJECT_NAME} PUBLIC ${BLAS_INCLUDE_DIR})
     # message(STATUS "Linking library: ${MKL_LIBRARY}")
     # target_link_libraries(${PROJECT_NAME} PRIVATE ${MKL_LIBRARY})
 endif()
