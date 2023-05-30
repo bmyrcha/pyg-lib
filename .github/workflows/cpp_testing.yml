@@ -28,15 +28,17 @@ jobs:
           pip install mkl-devel==2021.4
           pip install mkl_random==1.2.2
           pip install mkl-service==2.4.0
-          ls /opt/hostedtoolcache/Python/3.8.16/x64/lib/ | grep -i mkl
-          export MKL_RANDOM_PATH=`python -c 'import os; import mkl_random; print(os.path.dirname(mkl_random.__file__))'`
-          export MKL_LIBRARY=`find ${MKL_RANDOM_PATH} -type f -name *.so`
-          echo "MKL_LIBRARY: ${MKL_LIBRARY}"
+          pip install mkl-static==2021.4
           
           mkdir build
           cd build
           export _BLAS_INCLUDE_DIR=`python -c 'import os;import sysconfig;data=sysconfig.get_path("data");print(f"{data}{os.sep}include")'`
-          Torch_DIR=`python -c 'import torch;print(torch.utils.cmake_prefix_path)'` cmake .. -GNinja -DBUILD_TEST=ON -DWITH_COV=ON -DCMAKE_BUILD_TYPE=DEBUG -DUSE_MKL_BLAS=ON -DBLAS_INCLUDE_DIR=$_BLAS_INCLUDE_DIR -DMKL_LIBRARY=$MKL_LIBRARY
+          export MKL_LIBS_DIR=`python -c 'import os;import sysconfig;data=sysconfig.get_path("data");print(f"{data}{os.sep}lib")'`
+          
+          ls ${MKL_LIBS_DIR} | grep -i mkl
+          
+          Torch_DIR=`python -c 'import torch;print(torch.utils.cmake_prefix_path)'` cmake .. -GNinja -DBUILD_TEST=ON -DWITH_COV=ON -DCMAKE_BUILD_TYPE=DEBUG -DUSE_MKL_BLAS=ON -DBLAS_INCLUDE_DIR=$_BLAS_INCLUDE_DIR -DMKL_LIBS_DIR=${MKL_LIBS_DIR}
+          
           unset _BLAS_INCLUDE_DIR
           cd ..
 
