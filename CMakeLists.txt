@@ -56,7 +56,7 @@ file(GLOB_RECURSE ALL_HEADERS ${CSRC}/*.h)
 add_library(${PROJECT_NAME} SHARED ${ALL_SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 if(MKL_INCLUDE_FOUND)
-    set(MKL_DIR third_party/oneMKL)
+    set(MKL_DIR third_party/oneMKL/cmake/mkl)
     find_package(MKL CONFIG REQUIRED)
     
     target_compile_options(${PROJECT_NAME} PUBLIC $<TARGET_PROPERTY:MKL::MKL,INTERFACE_COMPILE_OPTIONS>)
