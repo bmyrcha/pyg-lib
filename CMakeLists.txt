@@ -57,15 +57,9 @@ add_library(${PROJECT_NAME} SHARED ${ALL_SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 if(MKL_INCLUDE_FOUND)
     target_include_directories(${PROJECT_NAME} PRIVATE ${BLAS_INCLUDE_DIR})
-    
-    get_filename_component(MKL_LIB_DIR ${MKL_LIBRARY} DIRECTORY)
-    message(STATUS "Linking directory: ${MKL_LIB_DIR}")
-    link_directories(${MKL_LIB_DIR})
-    include_directories(${MKL_LIB_DIR})
-    
-    message(STATUS "Linking library: ${MKL_LIBRARY}")
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${MKL_LIBRARY})
 
+    add_library(MKL_RANDOM SHARED IMPORTED)
+    set_target_properties(MKL_RANDOM PROPERTIES IMPORTED_LOCATION ${MKL_LIBRARY})
 
     # target_include_directories(${PROJECT_NAME} PRIVATE ${BLAS_INCLUDE_DIR})
     # message(STATUS "Linking library: ${MKL_LIBRARY}")
