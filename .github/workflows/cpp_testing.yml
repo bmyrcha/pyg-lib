@@ -46,6 +46,13 @@ jobs:
           cmake --build .
           cd ..
 
+      - name: Check lib
+        if: ${{ failure() }}
+        run: |
+          strings /home/runner/work/pyg-lib/pyg-lib/build/libpyg.so | grep -i viRng
+          readelf -Ws /home/runner/work/pyg-lib/pyg-lib/build/libpyg.so | grep viRng
+
+
       - name: Run tests
         run: |
           cd build
