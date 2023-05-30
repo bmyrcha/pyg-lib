@@ -56,11 +56,11 @@ file(GLOB_RECURSE ALL_HEADERS ${CSRC}/*.h)
 add_library(${PROJECT_NAME} SHARED ${ALL_SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 if(MKL_INCLUDE_FOUND)
-    target_include_directories(${PROJECT_NAME} PRIVATE ${BLAS_INCLUDE_DIR})
+    target_include_directories(${PROJECT_NAME} PUBLIC ${BLAS_INCLUDE_DIR})
 
     add_library(MKL_RANDOM SHARED IMPORTED)
     set_target_properties(MKL_RANDOM PROPERTIES IMPORTED_LOCATION ${MKL_LIBRARY})
-    target_link_libraries(${PROJECT_NAME} PRIVATE MKL_RANDOM)
+    target_link_libraries(${PROJECT_NAME} PUBLIC MKL_RANDOM)
 
     # target_include_directories(${PROJECT_NAME} PUBLIC ${BLAS_INCLUDE_DIR})
     # message(STATUS "Linking library: ${MKL_LIBRARY}")
