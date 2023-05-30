@@ -59,9 +59,8 @@ if(MKL_INCLUDE_FOUND)
     set(MKL_DIR third_party/oneMKL/cmake/mkl)
     find_package(MKL CONFIG REQUIRED)
     
-    target_compile_options(${PROJECT_NAME} PUBLIC $<TARGET_PROPERTY:MKL::mkl_core,INTERFACE_COMPILE_OPTIONS>)
-    target_include_directories(${PROJECT_NAME} PUBLIC $<TARGET_PROPERTY:MKL::mkl_core,INTERFACE_INCLUDE_DIRECTORIES>)
-    target_link_libraries(${PROJECT_NAME} PUBLIC $<LINK_ONLY:MKL::mkl_core>)
+    target_include_directories(${PROJECT_NAME} PUBLIC ${MKL_INCLUDE_DIRS})
+    target_link_libraries(${PROJECT_NAME} PUBLIC ${MKL_LIBRARIES})
 endif()
 
 if (NOT "$ENV{EXTERNAL_PHMAP_INCLUDE_DIR}" STREQUAL "")
